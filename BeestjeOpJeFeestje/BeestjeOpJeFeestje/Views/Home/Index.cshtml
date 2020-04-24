@@ -1,0 +1,46 @@
+﻿@model BeestjeOpJeFeestje.Domain.Models.BookingVM
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>Boek een beestje</h1>
+        <p class="lead">Welkom bij 'Beestje op een feestje' (BOEF). Hier kun je een of meerdere van onze dieren boeken voor op jouw feestje! Kies de dag van je feestje en volg de stappen om je beestje te boeken.</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="col-lg-4">
+        <h2>Boek hier je beestje!</h2>
+        <p>
+            Selecteer hieronder de datum waarop je een beestje wilt boeken!
+        </p>
+
+        @using (Html.BeginForm())
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-horizontal">
+                <hr/>
+                @Html.ValidationSummary(true, "", new {@class = "text-danger"})
+
+                <div class="form-group">
+                    @Html.LabelFor(model => model.Date, new {@class = "control-label col-lg-5"})
+                    <div class="col-lg-6">
+                        @Html.EditorFor(model => model.Date, new {htmlAttributes = new {@class = "form-control"}})
+                        @Html.ValidationMessageFor(model => model.Date, "", new {@class = "text-danger"})
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <div class="col-lg-6" align="center">
+                        <input type="submit" value="Boeken!" class="btn btn-success"/>
+                    </div>
+                </div>
+            </div>
+        }
+
+    </div>
+
+    <div class="col-md-6">
+        <img src="~/Images/field.png" alt="field.png" class="img-responsive"/>
+    </div>
+</div>

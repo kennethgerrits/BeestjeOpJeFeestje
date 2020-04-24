@@ -1,0 +1,103 @@
+﻿@model BeestjeOpJeFeestje.Domain.Models.BookingVM
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Booking</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Date)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Date)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContactPerson.Fullname)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContactPerson.Fullname)
+        </dd>
+
+    </dl>
+</div>
+<h3>Beesten:</h3>
+<table class="table">
+    <tr>
+        <th>
+            Name
+        </th>
+        <th>
+            Prijs
+        </th>
+        <th>
+            Type
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Beast)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Type)
+            </td>
+        </tr>
+    }
+
+</table>
+<h3>Accessoires:</h3>
+<table class="table">
+    <tr>
+        <th>
+            Naam
+        </th>
+        <th>
+            Prijs
+        </th>
+        <th>
+            Bijbehorend Beest
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.Accessory)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Price)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Beast.Name)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Back to List", "Index")
+</p>

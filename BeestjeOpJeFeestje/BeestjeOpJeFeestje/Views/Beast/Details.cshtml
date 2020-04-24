@@ -1,0 +1,64 @@
+﻿@model BeestjeOpJeFeestje.Domain.Models.BeastVM
+
+<h2>Details</h2>
+
+<div>
+    <h4>Beast</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Price)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Price)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Type)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Type)
+        </dd>
+
+    </dl>
+</div>
+<hr />
+<h4>Boekingen</h4>
+
+<table class="table">
+    <tr>
+        <th>
+            Datum
+        </th>
+        <th>
+            Contactpersoon
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Booking)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Date)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContactPerson.Fullname)
+            </td>
+        </tr>
+    }
+
+</table>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

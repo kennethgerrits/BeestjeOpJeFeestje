@@ -1,0 +1,29 @@
+﻿@model BeestjeOpJeFeestje.Domain.Models.BookingVM
+@{
+    Layout = null;
+}
+<div class="container" style="width: 450px">
+    <h3>Bookings overzicht</h3>
+    <p>Datum:</p>
+    <p>@Model.Date</p>
+    <p>Beesten:</p>
+    <div class="row">
+        <div class="col-lg-4">
+            @foreach (var beast in Model.Beast)
+            {
+                <div class="col-lg-6">
+                    <p> @beast.Name </p>
+                    <img src="~/Images/@beast.ImagePath" alt="animal" width="50" height="50" />
+                </div>
+            }
+        </div>
+    </div>
+    <br/>
+    <p>Accessoires:</p>
+    <ul>
+        @foreach (var acc in Model.Accessory)
+        {
+            <li>@acc.Name</li>
+        }
+    </ul>
+</div>

@@ -1,0 +1,55 @@
+﻿@model BeestjeOpJeFeestje.Domain.Models.BookingVM
+
+<h2 class="page-header">Stap 4</h2>
+
+<div>
+    <img src="~/Images/stap4.png" alt="stap4.png" width="500" class="center-block" style="padding-bottom: 2%" />
+</div>
+
+<h4>Uw bestellings overzicht</h4>
+<hr />
+
+<div class="row">
+    <div class="col-lg-7">
+        <h3>Contactgegevens</h3>
+
+        <p>@Model.ContactPerson.Fullname</p>
+        <p>@Model.ContactPerson.Adress</p>
+        <p>@Model.ContactPerson.Email</p>
+        <p>@Model.ContactPerson.PhoneNumber</p>
+
+        <h3>Prijs / Korting</h3>
+
+        <ul>
+            @foreach (var beast in Model.Beast)
+            {
+                <li>@beast.Name: €@beast.Price</li>
+            }
+            @foreach (var acc in Model.Accessory)
+            {
+                <li>@acc.Name: €@acc.Price</li>
+            }
+            @foreach (var discount in Model.Discounts)
+            {
+                <li>@discount.DiscountName @discount.PercentageDiscount%</li>
+            }
+        </ul>
+
+        <h4>Totale prijs: €@Model.Price</h4>
+
+        @using (Html.BeginForm("Step4", "Booking", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                <div class="col-md-3">
+                    <input type="submit" value="Bevestig boeking" class="btn btn-success" />
+                </div>
+            </div>
+        }
+    </div>
+
+    <div class="col-lg-2">
+        @Html.Action("InfoBar")
+    </div>
+</div>

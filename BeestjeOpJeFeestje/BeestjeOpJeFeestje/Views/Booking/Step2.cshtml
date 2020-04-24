@@ -1,0 +1,40 @@
+﻿@model IEnumerable<BeestjeOpJeFeestje.Domain.Models.AccessoryVM>
+
+<h2 class="page-header">Stap 2</h2>
+<div>
+    <img src="~/Images/stap2.png" alt="stap2.png" width="500" class="center-block" style="padding-bottom: 2%" />
+</div>
+<h4>Kies uw accessoires</h4>
+<hr />
+<div class="row">
+    <div class="col-lg-9">
+            @foreach (var acc in Model)
+            {
+                <div class="col-lg-4">
+                    <div class="thumbnail">
+                        <img src="~/Images/bever.png" alt="animal.png" width="50" height="50" />
+                        <div class="caption" align="center">
+                            <h3 style="word-wrap: break-word">@acc.Name <br/> €@acc.Price</h3>
+                            @using (Html.BeginForm("AddCheckedAccessory", "Booking", FormMethod.Post))
+                            {
+                                @Html.AntiForgeryToken()
+                                <input type="text" name="AccID" id="AccieID" value="@acc.ID" hidden />
+                                <input type="submit" value="@acc.Selected" class="btn btn-default" />
+                            }
+                        </div>
+                    </div>
+                </div>
+            }
+    </div>
+    <div class="col-lg-2">
+        @Html.Action("InfoBar")
+    </div>
+</div>
+
+@using (Html.BeginForm("Step2", "Booking", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    <div class="col-lg-12" align="center">
+        <input type="submit" value="Ga door naar stap 3" class="btn btn-success" />
+    </div>
+}
